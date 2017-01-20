@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
 
+import { BasicValidators } from '../shared/basic-validators';
+
+import {UsersService} from '../shared/users.service';
+
+import { User } from '../shared/user';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -8,20 +14,20 @@ import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
 })
 export class SignupComponent {
 
-  contactForm: FormGroup;
+  signUpForm: FormGroup;
 
-  constructor (private fb: FormBuilder) {
+  constructor (private mFormBuilder: FormBuilder, private mUsersService: UsersService) {
 
-    this.contactForm = this.fb.group({
+    this.signUpForm = this.mFormBuilder.group({
         name: ['',[ Validators.required,Validators.minLength(10)]],
-        password: ['',[ Validators.required,Validators.minLength(8)]],
-        email: ['', Validators.required],
-        phone: ['', Validators.required]
+        password: ['',[Validators.required,Validators.minLength(8)]],
+        email: ['', [Validators.required, BasicValidators.email]],
+        phone: ['', [Validators.required, BasicValidators.phone]]
       });
   }
 
-  onSubmit() {
-      console.log(this.contactForm.value);
+  onSubmit() {   
+    this.mUsersService.signup(this.signUpForm.value);
   }
 
 }
