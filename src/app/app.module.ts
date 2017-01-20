@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 
+import { ParseManager } from './shared/ParseManager';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     HttpModule,
     MaterializeModule
   ],
-  providers: [UsersService],
+  providers: [UsersService, ParseManager],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

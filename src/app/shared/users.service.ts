@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
 
 import { User } from './user';
+import * as constants from '../constants/constants';
+
+var Parse = require('parse').Parse;
+Parse.initialize(constants.AppId, constants.JavascriptKey, constants.AppMasterKey);
+Parse.serverURL = constants.ApiAddress;
 
 @Injectable()
 export class UsersService {
 
-  user: User = new User();
+  constructor() {
 
-  constructor() { }
+  }
 
-  signup(userForm: any){
+  signup(userForm: User, success: () => void, failed: (message) => void) {
+    var user = new Parse.User();
+    user.set("username", userForm.username);
+    user.set("password", userForm.password);
+    user.set("name", userForm.name);
+    user.set("phone", userForm.phone);
+    user.set("email", userForm.email);
 
-    this.user.name = userForm.name;
-    this.user.username = userForm.email;
-    this.user.email = userForm.email;
-    this.user.password = userForm.password;
-
-    console.log(this.user);
-    
+    user.signUp().then(function () {      
+      success();
+    }, function (e) {
+      failed(e);
+    });
 
   }
 

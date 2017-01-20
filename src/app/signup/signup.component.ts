@@ -3,7 +3,7 @@ import { FormGroup, FormControl,FormBuilder,Validators } from '@angular/forms';
 
 import { BasicValidators } from '../shared/basic-validators';
 
-import {UsersService} from '../shared/users.service';
+import {ParseManager} from '../shared/ParseManager';
 
 import { User } from '../shared/user';
 
@@ -16,7 +16,7 @@ export class SignupComponent {
 
   signUpForm: FormGroup;
 
-  constructor (private mFormBuilder: FormBuilder, private mUsersService: UsersService) {
+  constructor (private mFormBuilder: FormBuilder, private mParseManager: ParseManager) {
 
     this.signUpForm = this.mFormBuilder.group({
         name: ['',[ Validators.required,Validators.minLength(10)]],
@@ -26,8 +26,21 @@ export class SignupComponent {
       });
   }
 
-  onSubmit() {   
-    this.mUsersService.signup(this.signUpForm.value);
+  onSubmit() {
+    var userValue = this.signUpForm.value;
+    var user: User = new User();
+    user.name = userValue.name;
+    user.email = userValue.email;
+    user.password = userValue.password;
+    user.username = userValue.email;
+
+    this.mParseManager.signup(user, 
+    () => {
+        console.log("Sucesso");
+    }, 
+    (message) => {
+      console.log(message);
+    });
   }
 
 }
