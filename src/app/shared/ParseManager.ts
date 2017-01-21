@@ -12,7 +12,8 @@ export class ParseManager {
 
     }
 
-    signup(userForm: User, success: () => void, failed: (message) => void) {
+    signup(userForm: User, success: (message) => void, failed: (message) => void) {
+
         var user = new Parse.User();
         user.set("username", userForm.username);
         user.set("password", userForm.password);
@@ -21,11 +22,19 @@ export class ParseManager {
         user.set("email", userForm.email);
 
         user.signUp().then(function () {
-            success();
+            success("Account created successfully");
         }, function (e) {
-            failed(e);
+            failed(e.message);
         });
 
+    }
+
+    logIn(userForm: User, success: (message) => void, error: (message) => void) {
+        Parse.User.logIn(userForm.email, userForm.password).then(function (user) {
+            success("User successfully connected");
+        }, function (e) {
+            error(e.message);
+        });
     }
 
 }
