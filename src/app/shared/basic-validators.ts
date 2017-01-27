@@ -22,4 +22,14 @@ export class BasicValidators {
       }
     };
   }
+
+  static zipcode (control: FormControl){
+    let ZIPCODE_REGEXP = /^([0-9]){5}([-])([0-9]){3}$/;
+    
+    return ZIPCODE_REGEXP.test(control.value) ? null : {
+      validateZipCode: {
+        valid: false
+      }
+    };
+  }
 }

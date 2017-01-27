@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h1 class="heading"><strong>Log In</strong></h1>
+  <h3 class="heading"><strong>Log In</strong></h3>
 
   <div *ngIf="!logInForm.controls.email?.valid && (logInForm.controls.email?.dirty || 
       logInForm.controls.email?.touched)" class="alert alert-danger">
@@ -23,7 +23,7 @@
           <div class="form-group">
             <i class="material-icons prefix">email</i>
             <input type="email" class="form-control" name="email" formControlName="email">
-            <label for="email">E-mail</label>
+            <label class="email" for="email">E-mail</label>
           </div>
         </div>
       </div>
