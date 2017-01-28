@@ -38,7 +38,7 @@ export class ParseManager {
         });
     }
 
-    addCondo(condoForm: Condo, success:(message) => void, error: (message) => void){
+    addCondo(condoForm: Condo, success: (message) => void, error: (message) => void) {
         var Condo = Parse.Object.extend("Condo");
         var condo = new Condo();
 
@@ -46,17 +46,16 @@ export class ParseManager {
         condo.set("address", condoForm.address);
         condo.set("syndic", condoForm.syndic);
         condo.save(null, {
-            success: function(condoObj){ 
+            success: function (condoObj) {
                 success("Condo created");
             },
-            error: function(e){
+            error: function (e) {
                 error(e.message);
             }
         });
     }
 
-    getUserLogged(callback: (user)=>void){
+    getUserLogged(callback: (user) => void) {
         callback(Parse.User.current());
     }
-
 }

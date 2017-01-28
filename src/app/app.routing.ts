@@ -13,7 +13,7 @@ const APP_ROUTES: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'condos/new', component: RegisterCondoComponent},
     { path: 'condos/:id', component: CondoDetailsComponent},
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: 'login' }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

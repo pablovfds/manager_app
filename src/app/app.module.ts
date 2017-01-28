@@ -10,11 +10,13 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterCondoComponent } from './condos/register-condo/register-condo.component';
 import { CondoDetailsComponent } from './condos/condo-details/condo-details.component';
+import { CondosListComponent } from './condos/condos-list/condos-list.component';
 
 import { ParseManager } from './shared/ParseManager';
 import { routing } from './app.routing';
-import { condosRouting } from './condos/condos.routing';
+//import { condosRouting } from './condos/condos.routing';
 import { MaterializeModule } from 'angular2-materialize';
+import { ParseServiceService } from './shared/parse-service.service';
 
 @NgModule({
   declarations: [
@@ -24,17 +26,18 @@ import { MaterializeModule } from 'angular2-materialize';
     LoginComponent,
     HomeComponent,
     RegisterCondoComponent,
-    CondoDetailsComponent
+    CondoDetailsComponent,
+    CondosListComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     HttpModule,
     MaterializeModule,
-    routing,
-    condosRouting
+    routing/*,
+    condosRouting*/
   ],
-  providers: [ParseManager],
+  providers: [ParseManager, ParseServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
