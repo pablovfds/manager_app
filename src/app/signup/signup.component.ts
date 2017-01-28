@@ -38,7 +38,7 @@ export class SignupComponent {
     user.password = userValue.password;
     user.username = userValue.email;
 
-    this.mParseManager.signup(user,
+    this.mParseManager.signUp(user,
       (message) => {
         console.log(message);
         this.router.navigate(['']);

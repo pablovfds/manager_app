@@ -41,7 +41,20 @@ export class RegisterCondoComponent implements OnInit {
 
   registerCondo(){
     console.log(this.registerCondoForm.value);
-    
+    var condoFormValue = this.registerCondoForm.value;
+    var condo: Condo = new Condo();
+    condo.name = condoFormValue.name;
+    condo.address = condoFormValue.address;
+    this.mParseManager.getUserLogged((user) => {condo.syndic = user});
+
+    this.mParseManager.addCondo(condo,
+      (message) => {
+        console.log(message);
+        this.router.navigate(['home']);
+      },
+      (message) => {
+        console.log(message);
+      });
   }
 
 }
