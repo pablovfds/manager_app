@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ParseManager } from '../../shared/ParseManager';
 import { Condo } from '../../shared/condo';
 
-import { ParseServiceService } from '../../shared/parse-service.service';
+import { ParseManagerService } from '../../shared/parse-manager.service';
 
 @Component({
   selector: 'app-condos-list',
@@ -18,7 +18,7 @@ export class CondosListComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private mParseManager: ParseManager, 
-    private service: ParseServiceService) { }
+    private service: ParseManagerService) { }
 
   ngOnInit() {
     this.mParseManager.getUserLogged((user) => {

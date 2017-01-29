@@ -16,7 +16,7 @@ import { ParseManager } from './shared/ParseManager';
 import { routing } from './app.routing';
 //import { condosRouting } from './condos/condos.routing';
 import { MaterializeModule } from 'angular2-materialize';
-import { ParseServiceService } from './shared/parse-service.service';
+import { ParseManagerService } from './shared/parse-manager.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { ParseServiceService } from './shared/parse-service.service';
     routing/*,
     condosRouting*/
   ],
-  providers: [ParseManager, ParseServiceService],
+  providers: [ParseManager, ParseManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

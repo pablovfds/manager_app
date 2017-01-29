@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Condo } from './condo';
-import * as constants from '../constants/constants';
 
 // Import RxJs required methods
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
+import { User } from './user';
+import { Condo } from './condo';
+import * as constants from '../constants/constants';
+
 @Injectable()
-export class ParseServiceService {
+export class ParseManagerService {
 
   private serverCondoUrl = 'https://parseapi.back4app.com/classes/Condo';
 
@@ -22,14 +24,27 @@ export class ParseServiceService {
     this.headers.append('X-Parse-REST-API-Key', constants.AppKey);
   }
 
+  signUp(user: User) {
+
+  }
+
+  logIn(user: User): Observable<User> {
+    this.headers.append('X-Parse-Revocable-Session', '1');
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('username', user.username);
+    params.set('password', user.password);
+
+    return this.http.get(constants.ApiAddress + 'login',
+      {
+        headers: this.headers,
+        search: params
+      }).map((response: Response) => response.json())
+      .catch((e: any) => Observable.throw(e.json().error));
+  }
+
   getCondos(user): Observable<any[]> {
-    //let params = new URLSearchParams();
-    //params.set('where', JSON.stringify({
-    // "syndic": user
-    // }));
     return this.http.get(this.serverCondoUrl, {
-      headers: this.headers//,
-      //search: params
+      headers: this.headers
     }).map((res: Response) => res.json())
       .map((condos: any) => {
         let result: Condo[] = [];
