@@ -11,6 +11,8 @@ import { User } from './user';
 import { Condo } from './condo';
 import * as constants from '../constants/constants';
 
+var Parse = require('parse').Parse;
+
 @Injectable()
 export class ParseManagerService {
 
@@ -32,7 +34,7 @@ export class ParseManagerService {
     return this.http.post(constants.ApiAddress + 'users', user, {
       headers: this.headers
     }).map((response: Response) => response.json())
-    .catch((e: any) => Observable.throw(e.json().error));
+      .catch((e: any) => Observable.throw(e.json().error));
   }
 
   logIn(user: User): Observable<User> {
@@ -49,25 +51,46 @@ export class ParseManagerService {
       .catch((e: any) => Observable.throw(e.json().error));
   }
 
-  getCondos(user): Observable<any[]> {
-    return this.http.get(this.serverCondoUrl, {
+  addCondo(condo: Condo) {
+    return this.http.post(this.serverCondoUrl, condo, {
       headers: this.headers
+    }).map((response: Response) => response.json())
+      .catch((e: any) => Observable.throw(e.json().error));
+  }
+
+  getCondos(objectId): Observable<Condo[]> {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('where', JSON.stringify({"syndic": this.getUserPointer()}));
+
+    return this.http.get(this.serverCondoUrl, {
+      headers: this.headers,
+      search: params
     }).map((res: Response) => res.json())
       .map((condos: any) => {
         let result: Condo[] = [];
-        if (condos && condos.results) {
-          condos.results.forEach((obj) => {
-            if (obj.syndic && obj.syndic.objectId === user.id) {
-              var condo: Condo = new Condo();
-              condo.objectId = obj.objectId;
-              condo.name = obj.name;
-              result.push(condo);
-            }
-          });
-        }
+
+        condos.results.forEach((obj) => {
+
+          var condo: Condo = new Condo();
+          condo.objectId = obj.objectId;
+          condo.name = obj.name;
+          result.push(condo);
+
+        });
+
         return result;
       })
       .catch((error: any) => Observable.throw(error.message || 'Server error'));
+  }
+
+  getUserLogged() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  getUserPointer() {
+    var user = new Parse.User();
+    user.set("id", this.getUserLogged().objectId);
+    return user.toPointer();
   }
 
 }

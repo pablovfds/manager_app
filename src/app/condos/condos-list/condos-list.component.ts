@@ -17,20 +17,20 @@ export class CondosListComponent implements OnInit {
 
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private mParseManager: ParseManager, 
     private service: ParseManagerService) { }
 
   ngOnInit() {
-    this.mParseManager.getUserLogged((user) => {
-      this.service.getCondos(user).subscribe(
+    let objectId = this.service.getUserLogged().objectId;
+
+    this.service.getCondos(objectId).subscribe(
       condos => {
-        this.condosList = condos
+        this.condosList = condos       
       }, //Bind to view
       err => {
         // Log errors if any
         console.log(err);
       });
-    });
+
   }
 
 

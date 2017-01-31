@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ParseManager } from '../../shared/ParseManager';
+import { ParseManagerService } from '../../shared/parse-manager.service';
 import { Condo } from '../../shared/condo';
 import { BasicValidators } from '../../shared/basic-validators';
 
@@ -20,7 +20,7 @@ export class RegisterCondoComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private mFormBuilder: FormBuilder,
-    private mParseManager: ParseManager) {
+    private mParseManagerService: ParseManagerService) {
 
     this.registerCondoForm = this.mFormBuilder.group({
       name: ['', [Validators.required, Validators.minLength(10)]],
@@ -39,21 +39,20 @@ export class RegisterCondoComponent implements OnInit {
   ngOnInit() {
   }
 
-  registerCondo(){
-    console.log(this.registerCondoForm.value);
+  registerCondo() {
     var condoFormValue = this.registerCondoForm.value;
     var condo: Condo = new Condo();
     condo.name = condoFormValue.name;
     condo.address = condoFormValue.address;
-    this.mParseManager.getUserLogged((user) => {condo.syndic = user});
-
-    this.mParseManager.addCondo(condo,
-      (message) => {
-        console.log(message);
+    condo.syndic = this.mParseManagerService.getUserPointer();
+    this.mParseManagerService.addCondo(condo)
+      .subscribe(response => {
+        console.log(response);
         this.router.navigate(['home']);
-      },
-      (message) => {
-        console.log(message);
+      }, //Bind to view
+      err => {
+        // Log errors if any
+        console.log(err);
       });
   }
 
