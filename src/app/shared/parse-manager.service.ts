@@ -14,7 +14,8 @@ import * as constants from '../constants/constants';
 @Injectable()
 export class ParseManagerService {
 
-  private serverCondoUrl = 'https://parseapi.back4app.com/classes/Condo';
+  private serverCondoUrl: string;
+  private serverUsersUrl: string;
 
   _condos: Condo[] = [];
   headers = new Headers({ 'Content-Type': 'application/json' });
@@ -22,10 +23,16 @@ export class ParseManagerService {
   constructor(private http: Http) {
     this.headers.append('X-Parse-Application-Id', constants.AppId);
     this.headers.append('X-Parse-REST-API-Key', constants.AppKey);
+
+    this.serverCondoUrl = constants.ApiAddress + 'classes/Condo';
+    this.serverUsersUrl = constants + 'users';
   }
 
   signUp(user: User) {
-
+    return this.http.post(constants.ApiAddress + 'users', user, {
+      headers: this.headers
+    }).map((response: Response) => response.json())
+    .catch((e: any) => Observable.throw(e.json().error));
   }
 
   logIn(user: User): Observable<User> {

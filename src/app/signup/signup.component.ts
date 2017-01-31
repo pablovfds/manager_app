@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { ParseManagerService } from '../shared/parse-manager.service';
+
 import { BasicValidators } from '../shared/basic-validators';
-
-import { ParseManager } from '../shared/ParseManager';
-
 import { User } from '../shared/user';
 
 @Component({
@@ -20,7 +19,7 @@ export class SignupComponent {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private mFormBuilder: FormBuilder,
-    private mParseManager: ParseManager) {
+    private mParseManagerService: ParseManagerService) {
 
     this.signUpForm = this.mFormBuilder.group({
       name: ['', [Validators.required, Validators.minLength(10)]],
@@ -38,13 +37,15 @@ export class SignupComponent {
     user.password = userValue.password;
     user.username = userValue.email;
 
-    this.mParseManager.signUp(user,
-      (message) => {
-        console.log(message);
-        this.router.navigate(['']);
-      },
-      (message) => {
-        console.log(message);
+    this.mParseManagerService.signUp(user).subscribe(response => {
+      if (response) {
+        console.log("Account created successfully");
+        this.router.navigate(['login']);
+      }
+    }, //Bind to view
+      err => {
+        // Log errors if any
+        console.log(err);
       });
   }
 

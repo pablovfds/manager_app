@@ -15,7 +15,8 @@ import { CondosListComponent } from './condos/condos-list/condos-list.component'
 import { ParseManager } from './shared/ParseManager';
 import { routing } from './app.routing';
 //import { condosRouting } from './condos/condos.routing';
-import { MaterializeModule } from 'angular2-materialize';
+import { MaterializeModule, MaterializeDirective } from 'angular2-materialize';
+
 import { ParseManagerService } from './shared/parse-manager.service';
 
 @NgModule({
@@ -27,7 +28,8 @@ import { ParseManagerService } from './shared/parse-manager.service';
     HomeComponent,
     RegisterCondoComponent,
     CondoDetailsComponent,
-    CondosListComponent
+    CondosListComponent,
+    MaterializeDirective
   ],
   imports: [
     BrowserModule,
