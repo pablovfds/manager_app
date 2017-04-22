@@ -38,12 +38,21 @@ export class LoginComponent implements OnInit {
     this.mParseManager.logIn(user).subscribe(
       response => {
         if (response) {
+        
           localStorage.setItem('currentUser', JSON.stringify(response));
           this.router.navigate(['home']);
         }
       }, //Bind to view
       err => {
         // Log errors if any
+        var x = document.getElementById("snackbar")
+
+          // Add the "show" class to DIV
+          x.className = "show";
+          x.innerHTML = err;
+
+          // After 3 seconds, remove the show class from DIV
+          setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
         console.log(err);
       });
   }

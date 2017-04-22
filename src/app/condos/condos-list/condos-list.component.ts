@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ParseManager } from '../../shared/ParseManager';
 import { Condo } from '../../shared/condo';
 
 import { ParseManagerService } from '../../shared/parse-manager.service';

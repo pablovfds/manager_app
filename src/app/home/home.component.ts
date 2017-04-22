@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ParseManager } from '../shared/ParseManager';
 import { Condo } from '../shared/condo';
 
 @Component({
@@ -12,7 +11,7 @@ import { Condo } from '../shared/condo';
 export class HomeComponent implements OnInit {
 
   constructor(private router: Router,
-    private route: ActivatedRoute, private mParseManager: ParseManager) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     

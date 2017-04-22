@@ -12,7 +12,6 @@ import { RegisterCondoComponent } from './condos/register-condo/register-condo.c
 import { CondoDetailsComponent } from './condos/condo-details/condo-details.component';
 import { CondosListComponent } from './condos/condos-list/condos-list.component';
 
-import { ParseManager } from './shared/ParseManager';
 import { routing } from './app.routing';
 //import { condosRouting } from './condos/condos.routing';
 import { MaterializeModule } from 'angular2-materialize';
@@ -38,7 +37,7 @@ import { ParseManagerService } from './shared/parse-manager.service';
     routing/*,
     condosRouting*/
   ],
-  providers: [ParseManager, ParseManagerService],
+  providers: [ParseManagerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
