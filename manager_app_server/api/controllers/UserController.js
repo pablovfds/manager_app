@@ -6,19 +6,14 @@
  */
 
 module.exports = {
-	
-
-
   /**
    * `UserController.login()`
    */
   login: function (req, res) {
     // See `api/responses/login.js`
     return res.login({
-      email: req.param('email'),
-      password: req.param('password'),
-      successRedirect: '/',
-      invalidRedirect: '/login'
+      email: req.body.email,
+      password: req.body.password
     });
   },
 
@@ -49,9 +44,10 @@ module.exports = {
   signup: function (req, res) {
     // Attempt to signup a user using the provided parameters
     User.signup({
-      name: req.param('name'),
-      email: req.param('email'),
-      password: req.param('password')
+      name: req.body.name,
+      email: req.body.username,
+      password: req.body.password,
+      phone: req.body.phone
     }, function (err, user) {
       // res.negotiate() will determine if this is a validation error
       // or some kind of unexpected server error, then call `res.badRequest()`
@@ -66,11 +62,8 @@ module.exports = {
       // If this is not an HTML-wanting browser, e.g. AJAX/sockets/cURL/etc.,
       // send a 200 response letting the user agent know the signup was successful.
       if (req.wantsJSON) {
-        return res.ok('Signup successful!');
+        return res.json(user);
       }
-
-      // Otherwise if this is an HTML-wanting browser, redirect to /welcome.
-      return res.redirect('/welcome');
     });
 
   }

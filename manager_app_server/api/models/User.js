@@ -5,16 +5,33 @@
  * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
  */
 
+var bcrypt = require('bcrypt');
+
 module.exports = {
 
   attributes: {
     email: {
       type: 'email',
-      required: true
+      required: true,
+      unique: true
     },
     password: {
       type: 'string',
+      minLength: 6,
       required: true
+    },
+    name: {
+      type: 'string',
+      required: true
+    },
+    phone: {
+      type: 'string',
+      required: false
+    },
+    toJSON: function () {
+      var obj = this.toObject();
+      delete obj.password;
+      return obj;
     }
   },
 
@@ -36,9 +53,10 @@ module.exports = {
       name: inputs.name,
       email: inputs.email,
       // TODO: But encrypt the password first
-      password: inputs.password
+      password: inputs.password,
+      phone: inputs.phone
     })
-    .exec(cb);
+      .exec(cb);
   },
 
 
@@ -60,7 +78,20 @@ module.exports = {
       // TODO: But encrypt the password first
       password: inputs.password
     })
-    .exec(cb);
+      .exec(cb);
+  },
+  beforeCreate: function (user, cb) {
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        if (err) {
+          console.log(err);
+          cb(err);
+        } else {
+          user.password = hash;
+          cb();
+        }
+      });
+    });
   }
 };
 
