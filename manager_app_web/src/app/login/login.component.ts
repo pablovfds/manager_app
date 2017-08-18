@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ParseManagerService } from '../shared/parse-manager.service';
 import { AuthenticationService } from '../services/authentication.service';
-
 import { User } from '../shared/user';
+import { toast } from 'angular2-materialize';
 
 @Component({
   selector: 'app-login',
@@ -37,23 +36,14 @@ export class LoginComponent implements OnInit {
     user.username = this.logInForm.value.email;
     user.password = this.logInForm.value.password;
 
-    this.authenticationService.login(user.username, user.password)
-      .subscribe(
-      data => {
-        console.log(data);
+    this.authenticationService
+      .login(user.username, user.password)
+      .subscribe(data => {
+        toast(data, 4000);
         this.router.navigate(['home']);
-      },
-      error => {
-        var x = document.getElementById("snackbar")
-
-        let err = JSON.parse(error);
-
-        // Add the "show" class to DIV
-        x.className = "show";
-        x.innerHTML = err._body;
-
-        // After 3 seconds, remove the show class from DIV
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+      }, error => {
+        let err = JSON.parse(JSON.parse(error)._body);
+        toast(err.message, 4000);
       });
   }
 }

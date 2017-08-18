@@ -24,7 +24,51 @@ module.exports.routes = {
 
   '/': { view: 'homepage' },
   // Endpoints
-  'post /signup': 'UserController.create',
+  ////Auth
   'post /login': 'AuthController.login',
   '/logout': 'AuthController.logout',
+
+  //// User
+  'get /user': {
+    controller	: 'UserController',
+    action		: 'findAll'
+  },
+  'get /user/:id': {
+    controller	: 'UserController',
+    action		: 'find'
+  },
+  'post /signup': {
+    controller	: 'UserController',
+    action		: 'create'
+  },
+  'put /user/:id': {
+    controller	: 'UserController',
+    action		: 'update'
+  },
+  'delete /user/:id': {
+    controller	: 'UserController',
+    action		: 'destroy'
+  },
+
+  //// Condo
+  'get /condo': {
+    controller	: 'CondoController',
+    action		: 'findAll'
+  },
+  'get /condo/:id': {
+    controller	: 'CondoController',
+    action		: 'find'
+  },
+  'post /condo': {
+    controller	: 'CondoController',
+    action		: 'create'
+  },
+  'put /condo/:id': {
+    controller	: 'CondoController',
+    action		: 'update'
+  },
+  'delete /condo/:id': {
+    controller	: 'CondoController',
+    action		: 'destroy'
+  },
 };

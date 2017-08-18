@@ -21,7 +21,45 @@ module.exports = {
         res.json(200, {user: user, token: jwToken.issue({id: user.id})});
       }
     });
+  },
 
+  /**
+   * `UserController.update()`
+   */
+  update: function (req, res) {
+    return res.json({
+      todo: 'update() is not implemented yet!'
+    });
+  },
+
+
+  /**
+   * `UserController.destroy()`
+   */
+  destroy: function (req, res) {
+    return res.json({
+      todo: 'destroy() is not implemented yet!'
+    });
+  },
+
+
+  /**
+   * `UserController.findOne()`
+   */
+  find: function (req, res) {
+    return res.json({
+      todo: 'findOne() is not implemented yet!'
+    });
+  },
+
+
+  /**
+   * `UserController.find()`
+   */
+  findAll: function (req, res) {
+    return res.json({
+      todo: 'find() is not implemented yet!'
+    });
   }
 };
 

@@ -18,12 +18,15 @@ export class AuthenticationService {
 
     return this.http.post(constants.ApiAddress + "/login", JSON.stringify(body))
       .map((response: Response) => {
-        let user = response.json();
-        if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+        let data = response.json();
+        console.log(response.json().message);
+
+        if (data && data.token) {
+          localStorage.setItem('currentUser', JSON.stringify(data.user));
+          localStorage.setItem('token', JSON.stringify(data.token));
         }
 
-        return user;
+        return data.message;
       })
       .catch((e: any) => Observable.throw(JSON.stringify(e)));
   }
@@ -31,6 +34,7 @@ export class AuthenticationService {
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 
 }
