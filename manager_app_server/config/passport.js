@@ -30,6 +30,7 @@ passport.use(new LocalStrategy({
               message: 'Invalid username/password combination.'
             });
           var returnUser = {
+            name: user.name,
             email: user.email,
             createdAt: user.createdAt,
             id: user.id

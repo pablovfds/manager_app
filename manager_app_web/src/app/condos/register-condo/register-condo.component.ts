@@ -26,12 +26,11 @@ export class RegisterCondoComponent {
     this.registerCondoForm = this.mFormBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       address: this.mFormBuilder.group({
-        // zipcode: ['', [Validators.required, BasicValidators.zipcode]]
         street: ['', Validators.required],
         city: ['', Validators.required],
         state: ['', Validators.required],
         country: ['', Validators.required],
-        zipcode: ['', Validators.required]
+        zipcode: ['', [Validators.required, BasicValidators.zipcode]]
       })
     });
   }
@@ -46,9 +45,9 @@ export class RegisterCondoComponent {
       .subscribe(response => {
         toast(response.message, 4000);
         this.router.navigate(['home']);
-      }, //Bind to view
+      },
       err => {
-        // Log errors if any
+        toast(err, 4000);
         console.log(err);
       });
   }

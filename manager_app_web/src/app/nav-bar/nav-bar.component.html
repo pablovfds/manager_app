@@ -7,12 +7,12 @@
       <!--<li routerLinkActive="active"><a routerLink="/login">Log In</a></li>-->
       <li>
         <a class="dropdown-button" href="#!" data-activates="dropdown1">
-          <i class="material-icons left">person</i>Name<i class="material-icons right">arrow_drop_down</i></a>
+          <i class="material-icons left">person</i>{{user.name}}<i class="material-icons right">arrow_drop_down</i></a>
         <ul id='dropdown1' class='dropdown-content'>
           <li><a>Profile</a></li>
           <li><a>Settings</a></li>
           <li class="divider"></li>
-          <li><a>Logout</a></li>
+          <li><a (click)="logout()">Logout</a></li>
         </ul>
       </li>
     </ul>

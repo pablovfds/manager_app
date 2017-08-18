@@ -52,10 +52,18 @@ module.exports.routes = {
 
   //// Condo
   'get /condo': {
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    },
     controller	: 'CondoController',
     action		: 'findAll'
   },
   'get /condo/:id': {
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    },
     controller	: 'CondoController',
     action		: 'find'
   },

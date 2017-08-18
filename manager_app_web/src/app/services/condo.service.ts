@@ -30,7 +30,10 @@ export class CondoService {
     }
 
     getByUserId(id: string){
-      return this.http.get(constants.ApiAddress + '/condo/?userid=' + id, this.jwt()).map((response: Response) => response.json());
+      let params: URLSearchParams = new URLSearchParams();
+      params.set('userid', id);
+      this.jwt().search = params;
+      return this.http.get(constants.ApiAddress + '/condo', this.jwt()).map((response: Response) => response.json());
     }
 
     // private helper methods

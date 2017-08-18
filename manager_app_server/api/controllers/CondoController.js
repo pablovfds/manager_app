@@ -19,7 +19,7 @@ module.exports = {
       if (err) {
         return res.json(err.status, {err: err});
       }
-      
+
       if (condo) {
         res.json(200, {message: "Condo created successfuly!", condo: condo});
       }
@@ -70,8 +70,18 @@ module.exports = {
    * `CondoController.find()`
    */
   findAll: function (req, res) {
+
+    var userId = req.param("userid");
+    var query = {};
+
+    if (userId) {
+      query = {
+        syndic : userId
+      }
+    }
+
     Condo
-      .find({})
+      .find(query)
       .populate('address')
       .exec(function (err, condo) {
         if (err) {
@@ -79,9 +89,10 @@ module.exports = {
         }
 
         if (condo) {
-          res.json(200, {condo: condo});
+          res.json(200, condo);
         }
       });
   }
+
 };
 
