@@ -24,7 +24,7 @@ module.exports.routes = {
 
   '/': { view: 'homepage' },
   // Endpoints
-  'post /signup': 'UserController.signup',
+  'post /signup': 'UserController.create',
   'post /login': 'AuthController.login',
   '/logout': 'AuthController.logout',
 };

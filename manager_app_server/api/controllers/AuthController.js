@@ -28,7 +28,7 @@ module.exports = {
         return res.send({
           message: info.message,
           user: user,
-          token: info.token
+          token: jwToken.issue({id: user.id})
         });
       });
 

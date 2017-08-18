@@ -21,13 +21,13 @@ passport.use(new LocalStrategy({
     User.findOne({ email: email }, function (err, user) {
       if (err) { return done(err); }
       if (!user) {
-        return done(null, false, { message: 'Incorrect email.' });
+        return done(null, false, { message: 'Invalid username/password combination.' });
       }
 
       bcrypt.compare(password, user.password, function (err, res) {
           if (!res)
             return done(null, false, {
-              message: 'Invalid Password'
+              message: 'Invalid username/password combination.'
             });
           var returnUser = {
             email: user.email,
@@ -35,8 +35,7 @@ passport.use(new LocalStrategy({
             id: user.id
           };
           return done(null, returnUser, {
-            message: 'Logged In Successfully',
-            token: jwToken.issue({id: user.id})
+            message: 'Logged In Successfully'
           });
         });
     });
