@@ -19,16 +19,15 @@ export class AuthenticationService {
     return this.http.post(constants.ApiAddress + "/login", JSON.stringify(body))
       .map((response: Response) => {
         let data = response.json();
-        console.log(response.json().message);
 
+        console.log(data);
         if (data && data.token) {
           localStorage.setItem('currentUser', JSON.stringify(data.user));
           localStorage.setItem('token', JSON.stringify(data.token));
         }
 
         return data.message;
-      })
-      .catch((e: any) => Observable.throw(JSON.stringify(e)));
+      });
   }
 
   logout() {

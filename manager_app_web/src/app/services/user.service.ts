@@ -12,8 +12,7 @@ export class UserService {
 
   signUp(user: User) {
     return this.http.post(constants.ApiAddress + "/signup", user)
-      .map((response: Response) => response.json())
-      .catch((e: any) => Observable.throw(JSON.stringify(e)));
+      .map((response: Response) => response.json());
   }
 
   getAll() {

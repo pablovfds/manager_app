@@ -60,6 +60,10 @@ module.exports.routes = {
     action		: 'find'
   },
   'post /condo': {
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    },
     controller	: 'CondoController',
     action		: 'create'
   },

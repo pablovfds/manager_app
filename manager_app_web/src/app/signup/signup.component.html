@@ -1,20 +1,20 @@
 <body>
-    <div class="container">
-        <div id="login-page" class="row">
-            <div class="col s8 offset-s2 z-depth-6 card-panel">
-                <form materialize class="login-form col s12" [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
-                    <div class="row">
-                        <div class="input-field col s12 center">
-                            <img src="../../assets/images/app_icon.png" alt="" class="responsive-img valign profile-image-login">
-                        </div>
-                    </div>
-                    <div class="row margin">
-                        <div class="input-field col s12">
-                            <div class="form-group">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input type="text" class="form-control validate" name="name" formControlName="name">
-                                <label for="name">Name</label>
-                                <small>
+  <div class="container">
+    <div id="login-page" class="row">
+      <div class="col s8 offset-s2 z-depth-6 card-panel">
+        <form materialize class="login-form col s12" [formGroup]="signUpForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="row">
+            <div class="input-field col s12 center">
+              <img src="../../assets/images/app_icon.png" alt="" class="responsive-img valign profile-image-login">
+            </div>
+          </div>
+          <div class="row margin">
+            <div class="input-field col s12">
+              <div class="form-group">
+                <i class="material-icons prefix">account_circle</i>
+                <input type="text" class="form-control validate" name="name" formControlName="name">
+                <label for="name">Name</label>
+                <small>
                                     <span class="col s2"></span>
                                     <div *ngIf="!signUpForm.controls.name?.valid && (signUpForm.controls.name?.dirty ||
                                     signUpForm.controls.name?.touched)" class="left-align red-text">
@@ -27,17 +27,17 @@
                                     </div>
                                 </div>
                             </small>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="row margin">
-                    <div class="input-field col s12">
-                        <div class="form-group">
-                            <i class="material-icons prefix">phone</i>
-                            <input type="text" class="form-control" name="phone" formControlName="phone">
-                            <label for="phone">Phone</label>
-                            <small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row margin">
+            <div class="input-field col s12">
+              <div class="form-group">
+                <i class="material-icons prefix">phone</i>
+                <input type="text" class="form-control" name="phone" formControlName="phone">
+                <label for="phone">Phone</label>
+                <small>
                                 <span class="col s2"></span>
                                 <div *ngIf="!signUpForm.controls.phone?.valid && (signUpForm.controls.phone?.dirty ||
                                 signUpForm.controls.phone?.touched)" class="left-align red-text">
@@ -50,17 +50,17 @@
                                 </div>
                             </div>
                         </small>
-                    </div>
-                </div>
+              </div>
             </div>
-            
-            <div class="row margin">
-                <div class="input-field col s12">
-                    <div class="form-group">
-                        <i class="material-icons prefix">email</i>
-                        <input type="email" class="form-control" name="email" formControlName="email" email>
-                        <label for="email">E-mail</label>
-                        <small>
+          </div>
+
+          <div class="row margin">
+            <div class="input-field col s12">
+              <div class="form-group">
+                <i class="material-icons prefix">email</i>
+                <input type="email" class="form-control" name="email" formControlName="email" email>
+                <label for="email">E-mail</label>
+                <small>
                             <span class="col s2"></span>
                             <div *ngIf="!signUpForm.controls.email?.valid && (signUpForm.controls.email?.dirty ||
                             signUpForm.controls.email?.touched)" class="left-align red-text">
@@ -73,17 +73,17 @@
                             </div>
                         </div>
                     </small>
-                </div>
+              </div>
             </div>
-        </div>
-        
-        <div class="row margin">
+          </div>
+
+          <div class="row margin">
             <div class="input-field col s12">
-                <div class="form-group">
-                    <i class="material-icons prefix">lock</i>
-                    <input type="password" class="form-control" name="password" formControlName="password">
-                    <label for="password">Password</label>
-                    <small>
+              <div class="form-group">
+                <i class="material-icons prefix">lock</i>
+                <input type="password" class="form-control" name="password" formControlName="password">
+                <label for="password">Password</label>
+                <small>
                         <span class="col s2"></span>
                         <div *ngIf="!signUpForm.controls.password?.valid && (signUpForm.controls.password?.dirty ||
                         signUpForm.controls.password?.touched)" class="left-align red-text">
@@ -96,23 +96,21 @@
                         </div>
                     </div>
                 </small>
+              </div>
             </div>
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="input-field col s12">
-            <div class="form-group">
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <div class="form-group">
                 <button class="btn waves-effect waves-light col s12" type="submit" [disabled]="!signUpForm.valid">Register Now</button>
+              </div>
             </div>
-        </div>
-        <div class="input-field col s12">
-            <p class="margin center medium-small sign-up">Already have an account? <a routerLink="/login">Login</a></p>
-        </div>
+            <div class="input-field col s12">
+              <p class="margin center medium-small sign-up">Already have an account? <a routerLink="/login">Login</a></p>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    
-</form>
-</div>
-</div>
-</div>
+  </div>
 </body>

@@ -11,15 +11,7 @@
 module.exports = {
 
   attributes: {
-
-    number: {
-      type: 'int'
-    },
     street: {
-      type: 'string',
-      required: true
-    },
-    neighborhood: {
       type: 'string',
       required: true
     },

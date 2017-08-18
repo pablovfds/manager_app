@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         toast(data, 4000);
         this.router.navigate(['home']);
       }, error => {
-        let err = JSON.parse(JSON.parse(error)._body);
+        let err = JSON.parse(error._body);
         toast(err.message, 4000);
       });
   }

@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { ParseManagerService } from '../../shared/parse-manager.service';
 import { Condo } from '../../shared/condo';
 import { BasicValidators } from '../../shared/basic-validators';
+import { CondoService } from '../../services/condo.service';
+
+import { toast } from 'angular2-materialize';
 
 
 @Component({
@@ -12,42 +14,37 @@ import { BasicValidators } from '../../shared/basic-validators';
   templateUrl: './register-condo.component.html',
   styleUrls: ['./register-condo.component.css']
 })
-export class RegisterCondoComponent implements OnInit {
+export class RegisterCondoComponent {
 
   registerCondoForm: FormGroup;
-  condo: Condo = new Condo();
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private mFormBuilder: FormBuilder,
-    private mParseManagerService: ParseManagerService) {
+    private mCondoService: CondoService) {
 
     this.registerCondoForm = this.mFormBuilder.group({
-      name: ['', [Validators.required, Validators.minLength(10)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       address: this.mFormBuilder.group({
-        num: ['', Validators.required],
-        street: ['', [Validators.required, Validators.maxLength(30)]],
-        neighborhood: ['', [Validators.required, Validators.maxLength(30)]],
-        city: ['', [Validators.required, Validators.maxLength(30)]],
-        state: ['', [Validators.required, Validators.maxLength(30)]],
-        country: ['', [Validators.required, Validators.maxLength(30)]],
-        zipcode: ['', [Validators.required, BasicValidators.zipcode]]
+        // zipcode: ['', [Validators.required, BasicValidators.zipcode]]
+        street: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        country: ['', Validators.required],
+        zipcode: ['', Validators.required]
       })
     });
   }
 
-  ngOnInit() {
-  }
-
   registerCondo() {
-    var condoFormValue = this.registerCondoForm.value;
-    var condo: Condo = new Condo();
+    let condoFormValue = this.registerCondoForm.value;
+    let condo: Condo = new Condo();
     condo.name = condoFormValue.name;
     condo.address = condoFormValue.address;
-    condo.syndic = this.mParseManagerService.getUserPointer();
-    this.mParseManagerService.addCondo(condo)
+    condo.syndic = JSON.parse(localStorage.getItem('currentUser')).id;
+    this.mCondoService.create(condo)
       .subscribe(response => {
-        console.log(response);
+        toast(response.message, 4000);
         this.router.navigate(['home']);
       }, //Bind to view
       err => {

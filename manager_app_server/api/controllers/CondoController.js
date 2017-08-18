@@ -12,23 +12,16 @@ module.exports = {
    * `CondoController.create()`
    */
   create: function (req, res) {
-    Condo.create(req.body).exec(function (err, condo) {
+    Condo
+      .create(req.body)
+      .populate('address')
+      .exec(function (err, condo) {
       if (err) {
         return res.json(err.status, {err: err});
       }
-      // If user created successfuly we return user and token as response
+      
       if (condo) {
-        // NOTE: payload is { id: user.id}
-        Address.find(condo.address).exec(function (err, address) {
-          if (err) {
-            return res.json(err.status, {err: err});
-          }
-
-          if (address) {
-            condo.address = address;
-          }
-        })
-        res.json(200, {condo: condo});
+        res.json(200, {message: "Condo created successfuly!", condo: condo});
       }
     });
   },

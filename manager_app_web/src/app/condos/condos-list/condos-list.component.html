@@ -1,9 +1,11 @@
-<ul class="collection with-header">
-  <li class="collection-header">
-    <h4>List of Condos</h4>
-  </li>
-  <li class="collection-item" *ngFor="let item of condosList" (click)="openCondoDetails(item)">
-    <div>{{item.name}}<a class="secondary-content"><i class="material-icons">send</i></a></div>
-  </li>
-  <p class="center-align">Displaying {{ condosList.length }} condos</p>
-</ul>
+<div class="container">
+  <ul class="collection with-header">
+    <li class="collection-header">
+      <h4>List of Condos</h4>
+    </li>
+    <li class="collection-item" *ngFor="let item of condosList" (click)="openCondoDetails(item)">
+      <div>{{item.name}}<a class="secondary-content"><i class="material-icons">send</i></a></div>
+    </li>
+    <p class="center-align">Displaying {{ condosList.length }} condos</p>
+  </ul>
+</div>

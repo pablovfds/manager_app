@@ -8,11 +8,12 @@ import { RegisterCondoComponent } from './condos/register-condo/register-condo.c
 import { CondoDetailsComponent } from './condos/condo-details/condo-details.component';
 
 const APP_ROUTES: Routes = [
-    { path: 'login', component: LoginComponent, pathMatch: 'full' },
+    { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'home', component: HomeComponent },
+    { path: 'home', component: HomeComponent},
     { path: 'condos/new', component: RegisterCondoComponent},
     { path: 'condos/:id', component: CondoDetailsComponent},
+    // otherwise redirect to home
     { path: '**', redirectTo: 'login' }
 ];
 
