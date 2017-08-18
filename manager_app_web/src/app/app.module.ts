@@ -14,9 +14,11 @@ import { CondosListComponent } from './condos/condos-list/condos-list.component'
 
 import { routing } from './app.routing';
 //import { condosRouting } from './condos/condos.routing';
-import { MaterializeModule } from 'angular2-materialize';
+import { MaterializeModule,MaterializeDirective, MaterializeAction } from 'angular2-materialize';
 
-import { ParseManagerService } from './shared/parse-manager.service';
+// import { ParseManagerService } from './shared/parse-manager.service';
+import { AuthenticationService } from './services/authentication.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { ParseManagerService } from './shared/parse-manager.service';
     routing/*,
     condosRouting*/
   ],
-  providers: [ParseManagerService],
+  providers: [AuthenticationService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
