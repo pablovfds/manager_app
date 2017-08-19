@@ -10,21 +10,20 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class NavBarComponent implements OnInit {
 
-  private user : any;
+  private user: any;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
-    console.log(this.user)
   }
 
-  logout () {
+  logout() {
     this.authenticationService.logout();
     this.router.navigate(['']);
   }
-
 }

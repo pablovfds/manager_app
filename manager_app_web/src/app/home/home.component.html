@@ -1,11 +1,23 @@
+<!-- Navbar goes here -->
 <app-nav-bar></app-nav-bar>
+<!-- Page Layout here -->
+<div class="row">
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div>
+        <app-condos-list></app-condos-list>
+      </div>
 
-<div>
-  <app-condos-list></app-condos-list>
-</div>
-
-<div class="fixed-action-btn">
-  <a class="btn-floating btn-largewaves-effect waves-light modal-trigger btn-floating btn-large red" (click)="registerCondo()">
-    <i class="material-icons">add</i>
-  </a>
-</div>
+      <app-register-condo></app-register-condo>
+      <div class="fixed-action-btn click-to-toggle" style="bottom:24px; right:24px;">
+        <a class="btn-floating btn-large red"><i class="large material-icons">settings</i></a>
+        <ul>
+          <li (click)="registerCondo()">
+            <a href="javascript:void(0)" class="btn-floating amber darken-1" (click)="registerCondo()"><i class="material-icons">create</i></a>
+            <a href="#" class="btn-floating mobile-fab-tip">New condo</a>
+            <!--tooltip-->
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

@@ -41,7 +41,8 @@ import { CondoService } from './services/condo.service';
   providers: [
     AuthenticationService,
     UserService,
-    CondoService
+    CondoService,
+    RegisterCondoComponent
     ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -7,6 +7,9 @@ import { BasicValidators } from '../../shared/basic-validators';
 import { CondoService } from '../../services/condo.service';
 
 import { toast } from 'angular2-materialize';
+
+import { MaterializeAction } from "angular2-materialize";
+
 
 
 @Component({
@@ -50,6 +53,16 @@ export class RegisterCondoComponent {
         toast(err, 4000);
         console.log(err);
       });
+  }
+
+  actions = new EventEmitter<string | MaterializeAction>();
+
+  modalOpen() {
+    this.actions.emit({ action: "modal", params: ['open'] });
+  }
+
+  modalClose() {
+    this.actions.emit({ action: "modal", params: ['close'] });
   }
 
 }

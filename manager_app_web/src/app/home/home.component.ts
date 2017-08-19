@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Condo } from '../shared/condo';
+
+import { RegisterCondoComponent } from '../condos/register-condo/register-condo.component';
+
 
 @Component({
   selector: 'app-home',
@@ -10,18 +13,21 @@ import { Condo } from '../shared/condo';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(RegisterCondoComponent)
+  private madal1: RegisterCondoComponent;
+
   constructor(private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
+
   }
 
-  registerCondo(){
-    this.router.navigate(['condos/new']);
+  registerCondo() {
+    this.madal1.modalOpen();
   }
 
-  openCondoDetails(condo: Condo){
+  openCondoDetails(condo: Condo) {
 
   }
 }

@@ -1,20 +1,47 @@
-<nav>
-  <div class="nav-wrapper amber">
-    <div class="offset-s6">
-      <a routerLink="" class="brand-logo">O Sindico</a>
+<header>
+  <nav class="amber">
+    <div class="nav-wrapper">
+      <ul>
+        <li>
+          <a href="javascript:void(0)" class="brand-logo">O Sindico</a>
+          <a href="#" materialize="sideNav" [materializeParams]="[{edge:'left'}]" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        </li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="javascript:void(0)">
+            <i class="material-icons left">notifications</i>
+            <span class="new badge">4</span>
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-button" href="#!" data-activates="dropdown1">
+            <img src="../../assets/images/ic_bender.png" alt="" class="circle left mini-perfil">
+            <span>{{user.name}}</span>
+            <i class="material-icons right">arrow_drop_down</i></a>
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a>Profile</a></li>
+            <li><a>Settings</a></li>
+            <li class="divider"></li>
+            <li><a (click)="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="side-nav blue" id="mobile-demo">
+        <li>
+          <div id="info-user-menu">
+            <img src="../../assets/images/ic_bender.png" alt="" class="circle center" id="perfil-sidebar">
+            <h6 class="white-text center" id="user-name-sidebar">{{user.name}}</h6>
+          </div>
+        </li>
+        <li class="divider"></li>
+
+        <li class="indent"><a><span class="white-text">Profile</span></a></li>
+        <li class="indent"><a><span class="white-text">Settings</span></a></li>
+        <li class="divider"></li>
+        <li class="indent"><a (click)="logout()"><span class="white-text">Logout</span></a></li>
+      </ul>
     </div>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <!--<li routerLinkActive="active"><a routerLink="/login">Log In</a></li>-->
-      <li>
-        <a class="dropdown-button" href="#!" data-activates="dropdown1">
-          <i class="material-icons left">person</i>{{user.name}}<i class="material-icons right">arrow_drop_down</i></a>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a>Profile</a></li>
-          <li><a>Settings</a></li>
-          <li class="divider"></li>
-          <li><a (click)="logout()">Logout</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</nav>
+  </nav>
+</header>

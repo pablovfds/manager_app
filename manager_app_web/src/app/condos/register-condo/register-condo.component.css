@@ -3,3 +3,5 @@
      box-shadow: 0 1px 0 0 #d32f2f  ;
      font-size: 12px;
 }
+
+.modal { width: 75% !important ; max-height: 100% !important ; overflow-y: hidden !important ;}
