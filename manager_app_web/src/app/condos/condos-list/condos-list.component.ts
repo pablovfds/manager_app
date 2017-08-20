@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, Input, EventEmitter, Output } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Condo } from '../../shared/condo';
@@ -6,6 +6,8 @@ import { Condo } from '../../shared/condo';
 import { CondoService } from '../../services/condo.service';
 
 import { toast } from 'angular2-materialize';
+
+import {CondoDetailsComponent} from '../condo-details/condo-details.component';
 
 @Component({
   selector: 'app-condos-list',
@@ -15,6 +17,7 @@ import { toast } from 'angular2-materialize';
 export class CondosListComponent implements OnInit {
 
   public condosList: Condo[] = [];
+  selectedCondo: Condo = new Condo();
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -26,17 +29,19 @@ export class CondosListComponent implements OnInit {
     this.mCondoService.getByUserId(userId).subscribe(
       condos => {
         this.condosList = condos
+
+        if (this.condosList.length > 0) {
+          // this.selectedCondo = this.condosList[0];
+        }
       }, //Bind to view
       err => {
         // Log errors if any
         console.log(err);
       });
-
   }
 
-
-  openCondoDetails(condo: Condo) {
-    this.router.navigate(['condos/' + condo.id]);
+  setSelectedCondo(condo: Condo) {
+    this.selectedCondo = condo;
   }
 
 }

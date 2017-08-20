@@ -1,66 +1,79 @@
-<div id="modal" class="modal" materialize="modal" [materializeActions]="actions">
-  <div class="modal-content">
-    <h5 class="header3 center-align"><strong>Register Condo</strong></h5>
-    <div class="row">
-      <form materialize class="col s10 offset-s1" [formGroup]="registerCondoForm" (ngSubmit)="registerCondo()" novalidate>
-        <div class="row">
-          <div class="input-field col s12">
-            <div class="form-group">
-              <i class="material-icons prefix">account_circle</i>
-              <input type="text" class="form-control" placeholder="Name" name="name" formControlName="name" [class.invalid]="registerCondoForm.controls['name'].touched
+<!-- Navbar goes here -->
+<app-nav-bar></app-nav-bar>
+<!-- Page Layout here -->
+<div class="row">
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col s6 offset-s4 card">
+          <div class="card-content">
+            <div class="card-title center-align truncate"><strong>Register Condo</strong></div>
+            <div class="row">
+              <form materialize [formGroup]="registerCondoForm" (ngSubmit)="registerCondo()" novalidate>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <div class="form-group">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input type="text" class="form-control" placeholder="Name" name="name" formControlName="name" [class.invalid]="registerCondoForm.controls['name'].touched
                   && !registerCondoForm.controls['name'].valid">
-              <label for="name" data-error="Invalid Name">Condo Name</label>
-            </div>
-          </div>
-        </div>
-        <div formGroupName="address">
-          <div class="row">
-            <div class="input-field col s12">
-              <div class="form-group">
-                <i class="material-icons prefix">map</i>
-                <input type="text" class="form-control" name="street" placeholder="Street" formControlName="street" [class.invalid]="registerCondoForm.controls['address'].controls['street'].touched
+                      <label for="name" data-error="Invalid Name">Condo Name</label>
+                    </div>
+                  </div>
+                </div>
+                <div formGroupName="address">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <div class="form-group">
+                        <i class="material-icons prefix">map</i>
+                        <input type="text" class="form-control" name="street" placeholder="Street" formControlName="street" [class.invalid]="registerCondoForm.controls['address'].controls['street'].touched
                   && !registerCondoForm.controls['address'].controls['street'].valid">
-                <label for="street" data-error="Invalid Street">Street</label>
-              </div>
-            </div>
-            <div class="input-field col s6">
-              <div class="form-group">
-                <i class="material-icons prefix">map</i>
-                <input type="text" class="form-control" name="zipcode" placeholder="ZipCode" formControlName="zipcode" [class.invalid]="registerCondoForm.controls['address'].controls['zipcode'].touched
+                        <label for="street" data-error="Invalid Street">Street</label>
+                      </div>
+                    </div>
+                    <div class="input-field col s6">
+                      <div class="form-group">
+                        <i class="material-icons prefix">map</i>
+                        <input type="text" class="form-control" name="zipcode" placeholder="ZipCode" formControlName="zipcode" [class.invalid]="registerCondoForm.controls['address'].controls['zipcode'].touched
                   && !registerCondoForm.controls['address'].controls['zipcode'].valid">
-                <label for="zipcode" data-error="Invalid ZipCode">ZipCode</label>
-              </div>
-            </div>
-            <div class="input-field col s6">
-              <div class="form-group">
-                <i class="material-icons prefix">map</i>
-                <input type="text" class="form-control" name="city" placeholder="City" formControlName="city" [class.invalid]="registerCondoForm.controls['address'].controls['city'].touched
+                        <label for="zipcode" data-error="Invalid ZipCode">ZipCode</label>
+                      </div>
+                    </div>
+                    <div class="input-field col s6">
+                      <div class="form-group">
+                        <i class="material-icons prefix">map</i>
+                        <input type="text" class="form-control" name="city" placeholder="City" formControlName="city" [class.invalid]="registerCondoForm.controls['address'].controls['city'].touched
                   && !registerCondoForm.controls['address'].controls['city'].valid">
-                <label for="city" data-error="Invalid City">City</label>
-              </div>
-            </div>
-            <div class="input-field col s6">
-              <div class="form-group">
-                <i class="material-icons prefix">map</i>
-                <input type="text" class="form-control" name="state" placeholder="State" formControlName="state" [class.invalid]="registerCondoForm.controls['address'].controls['city'].touched
+                        <label for="city" data-error="Invalid City">City</label>
+                      </div>
+                    </div>
+                    <div class="input-field col s6">
+                      <div class="form-group">
+                        <i class="material-icons prefix">map</i>
+                        <input type="text" class="form-control" name="state" placeholder="State" formControlName="state" [class.invalid]="registerCondoForm.controls['address'].controls['city'].touched
                   && !registerCondoForm.controls['address'].controls['state'].valid">
-                <label for="city" data-error="Invalid City">State</label>
-              </div>
-            </div>
-            <div class="input-field col s6">
-              <div class="form-group">
-                <i class="material-icons prefix">map</i>
-                <input type="text" class="form-control" name="country" placeholder="country" formControlName="country" [class.invalid]="registerCondoForm.controls['address'].controls['country'].touched
+                        <label for="city" data-error="Invalid City">State</label>
+                      </div>
+                    </div>
+                    <div class="input-field col s6">
+                      <div class="form-group">
+                        <i class="material-icons prefix">map</i>
+                        <input type="text" class="form-control" name="country" placeholder="country" formControlName="country" [class.invalid]="registerCondoForm.controls['address'].controls['country'].touched
                   && !registerCondoForm.controls['address'].controls['country'].valid">
-                <label for="country" data-error="Invalid Country">Country</label>
-              </div>
+                        <label for="country" data-error="Invalid Country">Country</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="center-align">
+                    <button class="btn waves-effect waves-light btn-large" type="submit">Submit</button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-        <div class="form-group right-align">
-          <button class="btn waves-effect waves-light" type="submit">Submit</button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

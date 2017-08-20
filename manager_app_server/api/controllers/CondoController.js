@@ -12,17 +12,59 @@ module.exports = {
    * `CondoController.create()`
    */
   create: function (req, res) {
-    Condo
-      .create(req.body)
-      .populate('address')
-      .exec(function (err, condo) {
+
+    var responseObject = {};
+
+    Syndic.findOne(req.body.syndic, function (err, syndic) {
+
       if (err) {
-        return res.json(err.status, {err: err});
+        responseObject = {
+          status: MessageService.HTTP.SERVER_ERROR,
+          message: MessageService.SYNDIC.ERROR_SEARCHING_COLLECT,
+          error: err
+        };
+        return res.serverError(responseObject);
       }
 
-      if (condo) {
-        res.json(200, {message: "Condo created successfuly!", condo: condo});
+      if (!syndic) {
+
+        responseObject = {
+          status: MessageService.HTTP.NOT_FOUND,
+          message: MessageService.SYNDIC.ERROR_NOT_FOUND
+        };
+
+        return res.notFound(responseObject);
       }
+
+      Condo
+        .create(req.body)
+        .populate('address')
+        .exec(function (err, condo) {
+          if (err) {
+            return res.json(err.status, {err: err});
+          }
+
+          if (condo) {
+            syndic.condominiums.add(condo.id);
+            syndic.save(function(err){
+              if (err) {
+                responseObject = {
+                  status: MessageService.HTTP.SERVER_ERROR,
+                  message: MessageService.SYNDIC.ERROR_SEARCHING_COLLECT,
+                  error: err
+                };
+                return res.serverError(responseObject);
+              }
+              responseObject = {
+                status: MessageService.HTTP.OK,
+                condo: condo,
+                message: MessageService.CONDO.CREATED
+              };
+
+              return res.ok(responseObject);
+            });
+          }
+        });
     });
   },
 

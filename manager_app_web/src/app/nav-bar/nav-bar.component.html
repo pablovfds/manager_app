@@ -15,7 +15,7 @@
           </a>
         </li>
         <li>
-          <a class="dropdown-button" href="#!" data-activates="dropdown1">
+          <a class="dropdown-button" href="javascript:void(0)" data-activates="dropdown1">
             <img src="../../assets/images/ic_bender.png" alt="" class="circle left mini-perfil">
             <span>{{user.name}}</span>
             <i class="material-icons right">arrow_drop_down</i></a>
@@ -28,20 +28,48 @@
         </li>
       </ul>
 
-      <ul class="side-nav blue" id="mobile-demo">
+      <ul class="side-nav blue-grey" id="mobile-demo">
         <li>
           <div id="info-user-menu">
             <img src="../../assets/images/ic_bender.png" alt="" class="circle center" id="perfil-sidebar">
             <h6 class="white-text center" id="user-name-sidebar">{{user.name}}</h6>
+            <span class="white-text center-align" id="user-email-sidebar">{{user.email}}</span>
           </div>
         </li>
         <li class="divider"></li>
-
-        <li class="indent"><a><span class="white-text">Profile</span></a></li>
-        <li class="indent"><a><span class="white-text">Settings</span></a></li>
+        <li>
+          <a><i class="material-icons left">account_circle</i><span class="white-text">Profile</span></a>
+        </li>
+        <li>
+          <a><i class="material-icons left">settings</i><span class="white-text">Settings</span></a>
+        </li>
         <li class="divider"></li>
-        <li class="indent"><a (click)="logout()"><span class="white-text">Logout</span></a></li>
+        <li>
+          <a (click)="logout()"><i class="material-icons left">exit_to_app</i><span class="white-text">Logout</span></a>
+        </li>
       </ul>
     </div>
   </nav>
 </header>
+<aside>
+  <ul id="slide-out" class="side-nav fixed blue-grey">
+    <li>
+      <div id="info-user-menu">
+        <img src="../../assets/images/ic_bender.png" alt="" class="circle center" id="perfil-sidebar">
+        <h6 class="white-text center" id="user-name-sidebar">{{user.name}}</h6>
+        <span class="white-text center-align" id="user-email-sidebar">{{user.email}}</span>
+      </div>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a><i class="material-icons left">account_circle</i><span class="white-text">Profile</span></a>
+    </li>
+    <li>
+      <a><i class="material-icons left">settings</i><span class="white-text">Settings</span></a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a (click)="logout()"><i class="material-icons left">exit_to_app</i><span class="white-text">Logout</span></a>
+    </li>
+  </ul>
+</aside>

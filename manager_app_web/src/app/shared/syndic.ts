@@ -4,5 +4,5 @@ import { Condo } from './condo';
 export class Syndic {
   id: string;
   account: User = new User();
-  condominium: Condo = new Condo();
+  condominiums: Condo = new Condo();
 }

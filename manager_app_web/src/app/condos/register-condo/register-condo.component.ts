@@ -8,10 +8,6 @@ import { CondoService } from '../../services/condo.service';
 
 import { toast } from 'angular2-materialize';
 
-import { MaterializeAction } from "angular2-materialize";
-
-
-
 @Component({
   selector: 'app-register-condo',
   templateUrl: './register-condo.component.html',
@@ -43,7 +39,7 @@ export class RegisterCondoComponent {
     let condo: Condo = new Condo();
     condo.name = condoFormValue.name;
     condo.address = condoFormValue.address;
-    condo.syndic = JSON.parse(localStorage.getItem('currentUser')).id;
+    condo.syndic = JSON.parse(localStorage.getItem('currentSyndic'));
     this.mCondoService.create(condo)
       .subscribe(response => {
         toast(response.message, 4000);
@@ -54,15 +50,4 @@ export class RegisterCondoComponent {
         console.log(err);
       });
   }
-
-  actions = new EventEmitter<string | MaterializeAction>();
-
-  modalOpen() {
-    this.actions.emit({ action: "modal", params: ['open'] });
-  }
-
-  modalClose() {
-    this.actions.emit({ action: "modal", params: ['close'] });
-  }
-
 }

@@ -19,6 +19,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { CondoService } from './services/condo.service';
 import { SyndicService } from './services/syndic/syndic.service';
+import { DwellerListComponent } from './dweller-list/dweller-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SyndicService } from './services/syndic/syndic.service';
     HomeComponent,
     RegisterCondoComponent,
     CondoDetailsComponent,
-    CondosListComponent
+    CondosListComponent,
+    DwellerListComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { SyndicService } from './services/syndic/syndic.service';
     UserService,
     CondoService,
     SyndicService
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

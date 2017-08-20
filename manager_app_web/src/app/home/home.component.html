@@ -3,12 +3,10 @@
 <!-- Page Layout here -->
 <div class="row">
   <div id="page-content-wrapper">
-    <div class="container-fluid">
+    <div class="container-fluid col s12 offset-s1">
       <div>
         <app-condos-list></app-condos-list>
       </div>
-
-      <app-register-condo></app-register-condo>
       <div class="fixed-action-btn click-to-toggle" style="bottom:24px; right:24px;">
         <a class="btn-floating btn-large red"><i class="large material-icons">settings</i></a>
         <ul>
@@ -17,7 +15,13 @@
             <a href="#" class="btn-floating mobile-fab-tip">New condo</a>
             <!--tooltip-->
           </li>
+          <li (click)="sendMessageToCondo()">
+            <a href="javascript:void(0)" class="btn-floating amber darken-1" (click)="sendMessageToCondo()"><i class="material-icons">message</i></a>
+            <a href="#" class="btn-floating mobile-fab-tip">Send Message</a>
+            <!--tooltip-->
+          </li>
         </ul>
       </div>
     </div>
   </div>
+</div>

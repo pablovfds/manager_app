@@ -57,7 +57,14 @@ export class LoginComponent implements OnInit {
       .subscribe(response => {
         if (response.syndic) {
           localStorage.setItem('currentSyndic', JSON.stringify(response.syndic.id));
-          this.router.navigate(['home']);
+
+          console.log(response.syndic)
+
+          if (response.syndic.condominiums == null || response.syndic.condominiums.length === 0) {
+            this.router.navigate(['condos/new']);
+          } else {
+            this.router.navigate(['home']);
+          }
         } else {
           this.registerSyndic(accountId);
         }
@@ -71,7 +78,8 @@ export class LoginComponent implements OnInit {
   private registerSyndic(accountId: string) {
     this.mSyndicService.create(accountId)
     .subscribe(response => {
-        console.log(response);
+        localStorage.setItem('currentSyndic', JSON.stringify(response.syndic.id));
+        this.router.navigate(['condos/new']);
       },
       err => {
         toast(err, 4000);

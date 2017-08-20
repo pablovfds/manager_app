@@ -211,6 +211,7 @@ module.exports = {
       Syndic
         .findOne(query)
         .populate('account')
+        .populate('condominiums')
         .exec(function (err, syndic) {
           if (err) {
             return res.json(err.status, {err: err});

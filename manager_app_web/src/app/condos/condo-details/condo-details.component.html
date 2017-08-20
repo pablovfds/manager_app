@@ -1,3 +1,21 @@
-<p>
-  condo-details works!
-</p>
+<div class="card" *ngIf="condo">
+  <div class="card-image waves-effect waves-block waves-light">
+    <img class="activator" src="../../../assets/images/user-bg.jpg">
+  </div>
+  <div class="card-content">
+    <span class="card-title activator grey-text text-darken-4 truncate">{{condo.name}}<i class="material-icons right">more_vert</i></span>
+  </div>
+  <div class="card-reveal">
+    <span class="card-title grey-text text-darken-4">ss<i class="material-icons right">close</i></span>
+    <p>Here is some more information about this condo.</p>
+    <p><i class="material-icons left cyan-text text-darken-2">contact_phone</i> +1 (612) 222 8989</p>
+    <p><i class="material-icons left cyan-text text-darken-2">room</i> {{condo.address.street}}</p>
+    <p><i class="material-icons left cyan-text text-darken-2">room</i> {{condo.address.state}} - {{condo.address.country}},
+      {{condo.address.zipcode}}
+    </p>
+    <div class="center-align">
+      <a class="waves-effect waves-light btn" (click)="openDialogEditCondo()"><i class="material-icons left ">edit</i> Edit</a>
+      <a class="waves-effect waves-light btn" (click)="openDialogRemoveCondo()"><i class="material-icons left">delete</i> Remove</a>
+    </div>
+  </div>
+</div>
