@@ -18,6 +18,7 @@ import { MaterializeModule,MaterializeDirective, MaterializeAction } from 'angul
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
 import { CondoService } from './services/condo.service';
+import { SyndicService } from './services/syndic/syndic.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { CondoService } from './services/condo.service';
     AuthenticationService,
     UserService,
     CondoService,
-    RegisterCondoComponent
+    SyndicService
     ],
   bootstrap: [AppComponent]
 })

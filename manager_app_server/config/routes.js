@@ -23,7 +23,9 @@
 module.exports.routes = {
 
   '/': { view: 'homepage' },
-  // Endpoints
+
+  // Endpoints //
+
   ////Auth
   'post /login': 'AuthController.login',
   '/logout': 'AuthController.logout',
@@ -83,4 +85,68 @@ module.exports.routes = {
     controller	: 'CondoController',
     action		: 'destroy'
   },
+
+  //// Syndic
+  'get /syndic': {
+    controller	: 'SyndicController',
+    action		: 'findAll'
+  },
+  'get /syndic/account/:id': {
+    controller	: 'SyndicController',
+    action		: 'findByUserId'
+  },
+  'get /syndic/:id': {
+    controller	: 'SyndicController',
+    action		: 'find'
+  },
+  'post /syndic': {
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    },
+    controller	: 'SyndicController',
+    action		: 'create'
+  },
+  'put /syndic/:id': {
+    controller	: 'SyndicController',
+    action		: 'update'
+  },
+  'delete /syndic/:id': {
+    controller	: 'SyndicController',
+    action		: 'destroy'
+  },
+
+  //// Dweller
+  'get /dweller': {
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    },
+    controller	: 'DwellerController',
+    action		: 'findAll'
+  },
+  'get /dweller/:id': {
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    },
+    controller	: 'DwellerController',
+    action		: 'find'
+  },
+  'post /dweller': {
+    cors: {
+      origin: '*',
+      headers: 'Content-Type, Authorization'
+    },
+    controller	: 'DwellerController',
+    action		: 'create'
+  },
+  'put /dweller/:id': {
+    controller	: 'DwellerController',
+    action		: 'update'
+  },
+  'delete /dweller/:id': {
+    controller	: 'DwellerController',
+    action		: 'destroy'
+  }
 };

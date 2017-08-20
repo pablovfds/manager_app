@@ -6,6 +6,8 @@ import { AuthenticationService } from '../services/authentication.service';
 import { User } from '../shared/user';
 import { toast } from 'angular2-materialize';
 
+import { SyndicService } from '../services/syndic/syndic.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute,
     private mFormBuilder: FormBuilder,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private mSyndicService: SyndicService) {
 
     this.logInForm = this.mFormBuilder.group({
       password: ['', Validators.required],
@@ -32,18 +35,34 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitLogIn() {
-    var user = new User();
-    user.username = this.logInForm.value.email;
-    user.password = this.logInForm.value.password;
+    const username = this.logInForm.value.email;
+    const password = this.logInForm.value.password;
 
     this.authenticationService
-      .login(user.username, user.password)
+      .login(username, password)
       .subscribe(data => {
         toast(data, 4000);
-        this.router.navigate(['home']);
+        this.existSyndic();
       }, error => {
-        let err = JSON.parse(error._body);
+        const err = JSON.parse(error._body);
         toast(err.message, 4000);
+      });
+  }
+
+  private existSyndic() {
+    const accountId = JSON.parse(localStorage.getItem('currentUser')).id;
+    this.mSyndicService.getByUserId(accountId)
+      .subscribe(response => {
+        if (response.syndic) {
+          localStorage.setItem('currentSyndic', JSON.stringify(response.syndic.id));
+          this.router.navigate(['home']);
+        } else {
+          this.router.navigate(['syndic/new']);
+        }
+      },
+      err => {
+        toast(err, 4000);
+        console.log(err);
       });
   }
 }

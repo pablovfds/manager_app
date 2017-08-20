@@ -13,6 +13,7 @@ const APP_ROUTES: Routes = [
     { path: 'home', component: HomeComponent},
     { path: 'condos/new', component: RegisterCondoComponent},
     { path: 'condos/:id', component: CondoDetailsComponent},
+    { path: 'syndic/new', component: RegisterCondoComponent},
     // otherwise redirect to home
     { path: '**', redirectTo: 'login' }
 ];
