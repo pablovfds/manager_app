@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { AuthenticationService } from '../services/authentication.service';
-import { User } from '../shared/user';
 import { toast } from 'angular2-materialize';
 
+import { AuthenticationService } from '../services/authentication.service';
 import { SyndicService } from '../services/syndic/syndic.service';
+
+import { User } from '../shared/user';
+import { Syndic } from '../shared/syndic';
+import { Condo } from '../shared/condo';
 
 @Component({
   selector: 'app-login',
@@ -57,8 +59,19 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('currentSyndic', JSON.stringify(response.syndic.id));
           this.router.navigate(['home']);
         } else {
-          this.router.navigate(['syndic/new']);
+          this.registerSyndic(accountId);
         }
+      },
+      err => {
+        this.registerSyndic(accountId);
+        console.log(err);
+      });
+  }
+
+  private registerSyndic(accountId: string) {
+    this.mSyndicService.create(accountId)
+    .subscribe(response => {
+        console.log(response);
       },
       err => {
         toast(err, 4000);

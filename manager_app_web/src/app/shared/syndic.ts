@@ -3,6 +3,6 @@ import { Condo } from './condo';
 
 export class Syndic {
   id: string;
-  acoount: User = new User();
+  account: User = new User();
   condominium: Condo = new Condo();
 }

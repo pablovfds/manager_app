@@ -9,12 +9,15 @@ module.exports = {
 
   attributes: {
 
-    account: {model: 'user'},
+    account: {
+      model: 'user',
+      unique: true
+    },
 
     condominiums: {
       collection: 'condo',
       via: 'syndic'
-    },
+    }
   }
 };
 

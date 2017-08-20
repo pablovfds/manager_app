@@ -5,9 +5,7 @@
  * @help        :: See https://github.com/auth0/node-jsonwebtoken & http://sailsjs.org/#!/documentation/concepts/Services
  */
 
-var
-  jwt = require('jsonwebtoken'),
-  tokenSecret = "secretissecet";
+var jwt = require('jsonwebtoken'), tokenSecret = "secretissecet";
 
 // Generates a token from supplied payload
 module.exports.issue = function(payload) {

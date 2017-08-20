@@ -11,8 +11,13 @@ export class SyndicService {
 
   constructor(private http: Http) { }
 
-  create(syndic: Syndic) {
-    return this.http.post(constants.ApiAddress + '/syndic', syndic).map((response: Response) => response.json());
+  create(id: string) {
+
+    var body = {
+      accountId : id
+    }
+
+    return this.http.post(constants.ApiAddress + '/syndic', body, this.jwt()).map((response: Response) => response.json());
   }
 
   getAll() {
