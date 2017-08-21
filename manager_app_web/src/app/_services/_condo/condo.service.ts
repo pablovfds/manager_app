@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response, URLSearchParams, RequestOptions } from '@angular/http';
-import { Condo } from '../shared/condo';
 
-import * as constants from '../constants/constants';
+import { Condo } from '../../_models/condo';
+
+import * as constants from '../../constants/constants';
 
 @Injectable()
 export class CondoService {

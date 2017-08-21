@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../_services/_auth/authentication.service';
 
 @Component({
   selector: 'app-nav-bar',

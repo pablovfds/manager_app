@@ -2,10 +2,10 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { UserService } from '../services/user.service'
+import { UserService } from '../_services/_user/user.service';
 
 import { BasicValidators } from '../shared/basic-validators';
-import { User } from '../shared/user';
+import { User } from '../_models/user';
 import { toast } from 'angular2-materialize';
 
 @Component({
