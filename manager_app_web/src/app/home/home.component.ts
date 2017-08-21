@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Condo } from '../shared/condo';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

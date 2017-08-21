@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import * as constants from '../../constants/constants';
 
-import { Syndic } from '../../shared/syndic';
+import { Syndic } from '../../_models/syndic';
 
 @Injectable()
 export class SyndicService {
@@ -13,9 +13,9 @@ export class SyndicService {
 
   create(id: string) {
 
-    var body = {
+    const body = {
       accountId : id
-    }
+    };
 
     return this.http.post(constants.ApiAddress + '/syndic', body, this.jwt()).map((response: Response) => response.json());
   }
@@ -44,9 +44,9 @@ export class SyndicService {
 
   private jwt() {
     // create authorization header with jwt token
-    let token = JSON.parse(localStorage.getItem('token'));
+    const token = JSON.parse(localStorage.getItem('token'));
     if (token) {
-      let headers = new Headers({ 'Authorization': 'Bearer ' + token });
+      const headers = new Headers({ 'Authorization': 'Bearer ' + token });
       return new RequestOptions({ headers: headers });
     }
   }

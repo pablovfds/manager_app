@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-import { Condo } from '../../shared/condo';
+import { Condo } from '../../_models/condo';
 
 @Component({
   selector: 'app-condo-details',

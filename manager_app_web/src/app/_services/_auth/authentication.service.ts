@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, URLSearchParams, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import * as constants from '../constants/constants';
+import * as constants from '../../constants/constants';
 
 @Injectable()
 export class AuthenticationService {
@@ -16,7 +16,7 @@ export class AuthenticationService {
       password: password
     };
 
-    return this.http.post(constants.ApiAddress + "/login", JSON.stringify(body))
+    return this.http.post(constants.ApiAddress + '/login', JSON.stringify(body))
       .map((response: Response) => {
         let data = response.json();
 

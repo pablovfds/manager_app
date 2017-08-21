@@ -2,9 +2,9 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Condo } from '../../shared/condo';
+import { Condo } from '../../_models/condo';
 import { BasicValidators } from '../../shared/basic-validators';
-import { CondoService } from '../../services/condo.service';
+import { CondoService } from '../../_services/_condo/condo.service';
 
 import { toast } from 'angular2-materialize';
 
@@ -43,7 +43,7 @@ export class RegisterCondoComponent {
     this.mCondoService.create(condo)
       .subscribe(response => {
         toast(response.message, 4000);
-        this.router.navigate(['home']);
+        this.router.navigate(['']);
       },
       err => {
         toast(err, 4000);

@@ -3,12 +3,12 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router';
 import { toast } from 'angular2-materialize';
 
-import { AuthenticationService } from '../services/authentication.service';
-import { SyndicService } from '../services/syndic/syndic.service';
+import { AuthenticationService } from '../_services/_auth/authentication.service';
+import { SyndicService } from '../_services/_syndic/syndic.service';
 
-import { User } from '../shared/user';
-import { Syndic } from '../shared/syndic';
-import { Condo } from '../shared/condo';
+import { User } from '../_models/user';
+import { Syndic } from '../_models/syndic';
+import { Condo } from '../_models/condo';
 
 @Component({
   selector: 'app-login',
@@ -56,14 +56,11 @@ export class LoginComponent implements OnInit {
     this.mSyndicService.getByUserId(accountId)
       .subscribe(response => {
         if (response.syndic) {
-          localStorage.setItem('currentSyndic', JSON.stringify(response.syndic.id));
-
-          console.log(response.syndic)
-
+          localStorage.setItem('currentSyndic', response.syndic.id);
           if (response.syndic.condominiums == null || response.syndic.condominiums.length === 0) {
             this.router.navigate(['condos/new']);
           } else {
-            this.router.navigate(['home']);
+            this.router.navigate(['']);
           }
         } else {
           this.registerSyndic(accountId);
